@@ -195,7 +195,7 @@ final class AudioMonitor: ObservableObject {
             if due {
                 lastAlertAt = now
                 isAlerting = true
-                if settings.notificationsEnabled { onAlert?() }
+                onAlert?()
             }
         } else if levelDBFS < resetLevel {
             // Dropped clearly below threshold — re-arm so the next breach alerts

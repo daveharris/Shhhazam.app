@@ -21,27 +21,19 @@ final class AppSettings: ObservableObject {
         didSet { defaults.set(sustainSeconds, forKey: Keys.sustain) }
     }
 
-    /// Whether to post a system notification when too loud.
-    @Published var notificationsEnabled: Bool {
-        didSet { defaults.set(notificationsEnabled, forKey: Keys.notifications) }
-    }
-
     private let defaults = UserDefaults.standard
 
     private enum Keys {
         static let threshold = "thresholdDBFS"
         static let sustain = "sustainSeconds"
-        static let notifications = "notificationsEnabled"
     }
 
     init() {
         defaults.register(defaults: [
             Keys.threshold: -25.0,
             Keys.sustain: 2.0,
-            Keys.notifications: true,
         ])
         thresholdDBFS = defaults.double(forKey: Keys.threshold)
         sustainSeconds = defaults.double(forKey: Keys.sustain)
-        notificationsEnabled = defaults.bool(forKey: Keys.notifications)
     }
 }

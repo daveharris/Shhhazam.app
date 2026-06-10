@@ -15,21 +15,19 @@ struct MenuContentView: View {
     @ObservedObject var loginItem: LoginItemManager
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
+        VStack(alignment: .leading, spacing: 22) {
             header
             Divider()
+                .padding(.vertical, -8)
             levelSection
             sustainSection
-            Divider()
             togglesSection
             if !monitor.micAuthorized {
-                Divider()
                 micWarning
             }
-            Divider()
             footer
         }
-        .padding(14)
+        .padding(16)
         .frame(width: 320)
     }
 
@@ -86,7 +84,6 @@ struct MenuContentView: View {
 
     private var togglesSection: some View {
         VStack(alignment: .leading, spacing: 8) {
-            toggleRow("Notify me when too loud", isOn: $settings.notificationsEnabled)
             toggleRow("Launch at login", isOn: Binding(
                 get: { loginItem.isEnabled },
                 set: { loginItem.setEnabled($0) }))
